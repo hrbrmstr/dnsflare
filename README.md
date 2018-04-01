@@ -18,7 +18,7 @@ Tools are provided to query this ‘DNS’ ‘API’.
 The following functions are implemented:
 
   - `query`: Make a single DNS query
-  - \`valid\_dns\_types: Valid DNS types
+  - `valid_dns_types`: Valid DNS types
 
 ## TODO
 
