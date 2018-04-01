@@ -1,0 +1,29 @@
+Package: dnsflare
+Type: Package
+Title: Query 'Cloudflare' Domain Name System ('DNS') Servers over 'HTTPS'
+Version: 0.1.0
+Date: 2018-04-01
+Authors@R: c(
+    person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre"), 
+           comment = c(ORCID = "0000-0001-5670-2640"))
+  )
+Maintainer: Bob Rudis <bob@rud.is>
+Description: Domain Name System ('DNS') queries are generally perfomed by operating
+    system calls when browsing the internet or making other network connectios. DNS
+    over 'HTTPS' services offer more local confidentiality and some 'DNS' providers
+    like Cloudflare offer (<https://developers.cloudflare.com/1.1.1.1/dns-over-https/json-format/>)
+    an 'API'-like service along with other privacy-enabled 'DNS' offerings. Tools are
+    provided to query this 'DNS' 'API'.
+URL: https://github.com/hrbrmstr/dnsflare
+BugReports: https://github.com/hrbrmstr/dnsflare/issues
+Encoding: UTF-8
+License: AGPL
+Suggests:
+    testthat,
+    covr
+Depends:
+    R (>= 3.2.0)
+Imports:
+    httr,
+    jsonlite
+RoxygenNote: 6.0.1.9000

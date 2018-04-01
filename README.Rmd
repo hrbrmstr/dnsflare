@@ -1,0 +1,64 @@
+---
+output: rmarkdown::github_document
+---
+
+# dnsflare
+
+Query 'Cloudflare' Domain Name System ('DNS') Servers over 'HTTPS'
+
+## Description
+
+Domain Name System ('DNS') queries are generally perfomed by operating
+system calls when browsing the internet or making other network connectios. DNS
+over 'HTTPS' services offer more local confidentiality and some 'DNS' providers
+like Cloudflare offer (<https://developers.cloudflare.com/1.1.1.1/dns-over-https/json-format/>)
+an 'API'-like service along with other privacy-enabled 'DNS' offerings. Tools are
+provided to query this 'DNS' 'API'.
+
+## What's Inside The Tin
+
+The following functions are implemented:
+
+- `query`:	Make a single DNS query
+- `valid_dns_types:	Valid DNS types
+
+## TODO
+
+- `batch_query()` method
+- `as.data.frame()` method
+
+## Installation
+
+```{r eval=FALSE}
+devtools::install_github("hrbrmstr/dnsflare")
+```
+
+```{r message=FALSE, warning=FALSE, error=FALSE, include=FALSE}
+options(width=120)
+```
+
+## Usage
+
+```{r message=FALSE, warning=FALSE, error=FALSE}
+library(dnsflare)
+
+# current verison
+packageVersion("dnsflare")
+
+```
+
+## Queries
+
+```{r message=FALSE, warning=FALSE, error=FALSE}
+str(query("rud.is"))
+
+str(query("example.com", "A")) 
+
+str(query("microsoft.com", "MX"))
+
+# query("google-public-dns-a.google.com", "TXT") # CURRENTLY BROKEN ON CLOUDFLARE'S END
+
+str(query("apple.com"))
+
+str(query("17.142.160.59", "PTR"))
+```
