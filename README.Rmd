@@ -50,15 +50,19 @@ packageVersion("dnsflare")
 ## Queries
 
 ```{r message=FALSE, warning=FALSE, error=FALSE}
-str(query("rud.is"))
+query("rud.is")
 
-str(query("example.com", "A")) 
+query("example.com", "A")
 
-str(query("microsoft.com", "MX"))
+query("microsoft.com", "MX")
 
 # query("google-public-dns-a.google.com", "TXT") # CURRENTLY BROKEN ON CLOUDFLARE'S END
 
-str(query("apple.com"))
+query("apple.com")
 
-str(query("17.142.160.59", "PTR"))
+query("17.142.160.59", "PTR")
 ```
+
+## Code of Conduct
+
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.

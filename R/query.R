@@ -30,6 +30,11 @@ query <- function(name, type = "A") {
   if (!(type %in% valid_dns_types$type)) stop("Not a valid DNS type", call.=FALSE)
   if (type == "ANY") stop("Not a valid DNS type", call.=FALSE)
 
+  if (grepl(ipv4_regex, name)) {
+    .tmp <- rev(unlist(strsplit(name, "\\.")))
+    name <- paste0(c(.tmp, "in-addr.arpa."), sep = "", collapse = ".")
+  }
+
   httr::GET(
     url = "https://cloudflare-dns.com/dns-query",
     query = list (
@@ -46,7 +51,44 @@ query <- function(name, type = "A") {
   res <- httr::content(res, as="text", encoding="UTF-8")
   res <- jsonlite::fromJSON(res)
 
+  class(res) <- c("cf_dns_result")
+
   res
 
 }
 
+#' S3 Print method for cf_dns_result
+#'
+#' @param x cf_dns_result
+#' @param ... ignored
+#' @export
+print.cf_dns_result <- function(x, ...) {
+
+  y <- x
+
+  y$Question$type <- as.character(y$Question$type)
+  y$Answer$type <- as.character(y$Answer$type)
+
+  y$Question <- merge(y$Question, .vdt, by="type")
+  y$Answer <- merge(y$Answer, .vdt, by="type")
+
+  yst <- .query_status[.query_status$Status == y$Status,]$Description
+
+  xtra <- c(sprintf("Status: %s", yst))
+  if (y$TC) xtra <- append(xtra, "Truncated")
+  if (y$RD) xtra <- append(xtra, "Recursive Desired")
+  if (y$RA) xtra <- append(xtra, "Recursive Available")
+  if (y$AD) xtra <- append(xtra, "DNSSEC Verified")
+  if (y$CD) xtra <- append(xtra, "Client DNSSEC Disabled")
+
+  cat("Question:\n\n", sep="")
+  print(as.data.frame(y$Question))
+
+  cat("\nAnswer:\n\n", sep="")
+  print(as.data.frame(y$Answer))
+
+  cat("\n", paste0(xtra, collapse=" | "), sep="")
+
+  invisible(x)
+
+}
