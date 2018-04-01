@@ -1,10 +1,13 @@
 #' Make a single DNS query
 #'
+#' The [query()] function is aliased to [dig()] and [nslookup()] since the
+#' package author sometimes forgets they're at an R prompt and not a `bash` prompt.
+#'
 #' @md
-#' @note Cloudfare does not support `ANY` queries.
+#' @note Cloudfare [does not support](https://developers.cloudflare.com/1.1.1.1/nitty-gritty-details/) `ANY` queries.
 #' @param name query name (e.g. `example.com`)
 #' @param type query type (e.g. `AAAA`). Valid types can be found [here](https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4)
-#'        and perused in the [valid_dns_types] built-in data frame. Defaults to "`A`". _MUST_ be alpha-record, not numeric.
+#'        and perused in the [valid_dns_types] built-in data frame. Defaults to "`A`". Can be alpha or numeric types.
 #' @export
 #' @return a `list`` with the following field meanings:
 #' - `Status`: The Response Code of the DNS Query. These are defined here: <https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6>
@@ -18,6 +21,7 @@
 #' @examples
 #' query("rud.is")
 #' query("example.com", "A")
+#' query("example.com", "1")
 #' query("microsoft.com", "MX")
 #' # query("google-public-dns-a.google.com", "TXT") # CURRENTLY BROKEN ON CLOUDFLARE'S END
 #' query("apple.com")
@@ -27,8 +31,14 @@ query <- function(name, type = "A") {
   name <- name[1]
   type <- toupper(type[1])
 
-  if (!(type %in% valid_dns_types$type)) stop("Not a valid DNS type", call.=FALSE)
+  if (!((type %in% valid_dns_types$type) || (grepl("^[[:digit:]]$", type)))) {
+    stop("Not a valid DNS type", call.=FALSE)
+  }
+
   if (type == "ANY") stop("Not a valid DNS type", call.=FALSE)
+  if (as.character(type) == "255") stop("Not a valid DNS type", call.=FALSE)
+
+  if (grepl("^[[:digit:]]$", type)) type <- as.integer(type)
 
   if (grepl(ipv4_regex, name)) {
     .tmp <- rev(unlist(strsplit(name, "\\.")))
@@ -92,3 +102,11 @@ print.cf_dns_result <- function(x, ...) {
   invisible(x)
 
 }
+
+#' @rdname query
+#' @export
+dig <- query
+
+#' @rdname query
+#' @export
+nslookup <- query

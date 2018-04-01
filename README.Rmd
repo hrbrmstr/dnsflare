@@ -19,7 +19,9 @@ provided to query this 'DNS' 'API'.
 
 The following functions are implemented:
 
+- `dig`:	Make a single DNS query (just an "alias" to `query()`)
 - `query`:	Make a single DNS query
+- `nslookup`:	Make a single DNS query (just an "alias" to `query()`)
 - `valid_dns_types`:	Valid DNS types
 
 ## TODO
@@ -51,6 +53,8 @@ packageVersion("dnsflare")
 
 ```{r message=FALSE, warning=FALSE, error=FALSE}
 query("rud.is")
+
+query("rud.is", 1)
 
 query("example.com", "A")
 

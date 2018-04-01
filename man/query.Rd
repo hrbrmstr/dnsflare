@@ -2,15 +2,21 @@
 % Please edit documentation in R/query.R
 \name{query}
 \alias{query}
+\alias{dig}
+\alias{nslookup}
 \title{Make a single DNS query}
 \usage{
 query(name, type = "A")
+
+dig(name, type = "A")
+
+nslookup(name, type = "A")
 }
 \arguments{
 \item{name}{query name (e.g. \code{example.com})}
 
 \item{type}{query type (e.g. \code{AAAA}). Valid types can be found \href{https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4}{here}
-and perused in the \link{valid_dns_types} built-in data frame. Defaults to "\code{A}". \emph{MUST} be alpha-record, not numeric.}
+and perused in the \link{valid_dns_types} built-in data frame. Defaults to "\code{A}". Can be alpha or numeric types.}
 }
 \value{
 a `list`` with the following field meanings:
@@ -26,14 +32,16 @@ a `list`` with the following field meanings:
 }
 }
 \description{
-Make a single DNS query
+The \code{\link[=query]{query()}} function is aliased to \code{\link[=dig]{dig()}} and \code{\link[=nslookup]{nslookup()}} since the
+package author sometimes forgets they're at an R prompt and not a \code{bash} prompt.
 }
 \note{
-Cloudfare does not support \code{ANY} queries.
+Cloudfare \href{https://developers.cloudflare.com/1.1.1.1/nitty-gritty-details/}{does not support} \code{ANY} queries.
 }
 \examples{
 query("rud.is")
 query("example.com", "A")
+query("example.com", "1")
 query("microsoft.com", "MX")
 # query("google-public-dns-a.google.com", "TXT") # CURRENTLY BROKEN ON CLOUDFLARE'S END
 query("apple.com")

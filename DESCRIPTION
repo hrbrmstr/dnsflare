@@ -20,7 +20,9 @@ Encoding: UTF-8
 License: AGPL
 Suggests:
     testthat,
-    covr
+    covr,
+    urltools,
+    gdns
 Depends:
     R (>= 3.2.0)
 Imports:
