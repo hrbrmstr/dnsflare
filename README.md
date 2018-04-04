@@ -57,8 +57,8 @@ query("rud.is")
     ## 
     ## Answer:
     ## 
-    ##   type    name TTL            data value        meaning
-    ## 1    1 rud.is. 347 104.236.112.222     A a host address
+    ##   type    name  TTL            data value        meaning
+    ## 1    1 rud.is. 3600 104.236.112.222     A a host address
     ## 
     ## Status: No Error | Recursive Desired | Recursive Available
 
@@ -73,8 +73,8 @@ query("rud.is", 1)
     ## 
     ## Answer:
     ## 
-    ##   type    name TTL            data value        meaning
-    ## 1    1 rud.is. 347 104.236.112.222     A a host address
+    ##   type    name  TTL            data value        meaning
+    ## 1    1 rud.is. 3600 104.236.112.222     A a host address
     ## 
     ## Status: No Error | Recursive Desired | Recursive Available
 
@@ -89,8 +89,8 @@ query("example.com", "A")
     ## 
     ## Answer:
     ## 
-    ##   type         name TTL          data value        meaning
-    ## 1    1 example.com. 171 93.184.216.34     A a host address
+    ##   type         name  TTL          data value        meaning
+    ## 1    1 example.com. 2789 93.184.216.34     A a host address
     ## 
     ## Status: No Error | Recursive Desired | Recursive Available | DNSSEC Verified
 
@@ -106,13 +106,27 @@ query("microsoft.com", "MX")
     ## Answer:
     ## 
     ##   type           name  TTL                                          data value       meaning
-    ## 1   15 microsoft.com. 1882 10 microsoft-com.mail.protection.outlook.com.    MX mail exchange
+    ## 1   15 microsoft.com. 3600 10 microsoft-com.mail.protection.outlook.com.    MX mail exchange
     ## 
     ## Status: No Error | Recursive Desired | Recursive Available
 
 ``` r
-# query("google-public-dns-a.google.com", "TXT") # CURRENTLY BROKEN ON CLOUDFLARE'S END
+query("google-public-dns-a.google.com", "TXT") 
+```
 
+    ## Question:
+    ## 
+    ##   type                            name value      meaning
+    ## 1   16 google-public-dns-a.google.com.   TXT text strings
+    ## 
+    ## Answer:
+    ## 
+    ##   type                            name  TTL                    data value      meaning
+    ## 1   16 google-public-dns-a.google.com. 3534 "http://xkcd.com/1361/"   TXT text strings
+    ## 
+    ## Status: No Error | Recursive Desired | Recursive Available
+
+``` r
 query("apple.com")
 ```
 
@@ -123,10 +137,10 @@ query("apple.com")
     ## 
     ## Answer:
     ## 
-    ##   type       name  TTL          data value        meaning
-    ## 1    1 apple.com. 2983 17.142.160.59     A a host address
-    ## 2    1 apple.com. 2983 17.172.224.47     A a host address
-    ## 3    1 apple.com. 2983  17.178.96.59     A a host address
+    ##   type       name TTL          data value        meaning
+    ## 1    1 apple.com.  77 17.142.160.59     A a host address
+    ## 2    1 apple.com.  77 17.172.224.47     A a host address
+    ## 3    1 apple.com.  77  17.178.96.59     A a host address
     ## 
     ## Status: No Error | Recursive Desired | Recursive Available
 
@@ -142,56 +156,56 @@ query("17.142.160.59", "PTR")
     ## Answer:
     ## 
     ##    type                        name  TTL                           data value               meaning
-    ## 1    12 59.160.142.17.in-addr.arpa. 2189                       mac.one.   PTR a domain name pointer
-    ## 2    12 59.160.142.17.in-addr.arpa. 2189                      imac.one.   PTR a domain name pointer
-    ## 3    12 59.160.142.17.in-addr.arpa. 2189                     ipad.host.   PTR a domain name pointer
-    ## 4    12 59.160.142.17.in-addr.arpa. 2189                     ubnw.info.   PTR a domain name pointer
-    ## 5    12 59.160.142.17.in-addr.arpa. 2189                      apple.by.   PTR a domain name pointer
-    ## 6    12 59.160.142.17.in-addr.arpa. 2189                     apple.com.   PTR a domain name pointer
-    ## 7    12 59.160.142.17.in-addr.arpa. 2189                     apple.xyz.   PTR a domain name pointer
-    ## 8    12 59.160.142.17.in-addr.arpa. 2189                     chomp.com.   PTR a domain name pointer
-    ## 9    12 59.160.142.17.in-addr.arpa. 2189                      swell.am.   PTR a domain name pointer
-    ## 10   12 59.160.142.17.in-addr.arpa. 2189                     icloud.ch.   PTR a domain name pointer
-    ## 11   12 59.160.142.17.in-addr.arpa. 2189                     icloud.es.   PTR a domain name pointer
-    ## 12   12 59.160.142.17.in-addr.arpa. 2189                     icloud.fr.   PTR a domain name pointer
-    ## 13   12 59.160.142.17.in-addr.arpa. 2189                     icloud.om.   PTR a domain name pointer
-    ## 14   12 59.160.142.17.in-addr.arpa. 2189                     icloud.se.   PTR a domain name pointer
-    ## 15   12 59.160.142.17.in-addr.arpa. 2189                   iphone.host.   PTR a domain name pointer
-    ## 16   12 59.160.142.17.in-addr.arpa. 2189                  itunes.earth.   PTR a domain name pointer
-    ## 17   12 59.160.142.17.in-addr.arpa. 2189                   macosx.info.   PTR a domain name pointer
-    ## 18   12 59.160.142.17.in-addr.arpa. 2189                    openni.org.   PTR a domain name pointer
-    ## 19   12 59.160.142.17.in-addr.arpa. 2189                   yessql.info.   PTR a domain name pointer
-    ## 20   12 59.160.142.17.in-addr.arpa. 2189              airport.brussels.   PTR a domain name pointer
-    ## 21   12 59.160.142.17.in-addr.arpa. 2189                   appleid.org.   PTR a domain name pointer
-    ## 22   12 59.160.142.17.in-addr.arpa. 2189                   icloude.com.   PTR a domain name pointer
-    ## 23   12 59.160.142.17.in-addr.arpa. 2189                   icloudo.com.   PTR a domain name pointer
-    ## 24   12 59.160.142.17.in-addr.arpa. 2189                  ipadpro.buzz.   PTR a domain name pointer
-    ## 25   12 59.160.142.17.in-addr.arpa. 2189                 airtunes.info.   PTR a domain name pointer
-    ## 26   12 59.160.142.17.in-addr.arpa. 2189                 applepay.info.   PTR a domain name pointer
-    ## 27   12 59.160.142.17.in-addr.arpa. 2189                  appleweb.net.   PTR a domain name pointer
-    ## 28   12 59.160.142.17.in-addr.arpa. 2189                 powermac.info.   PTR a domain name pointer
-    ## 29   12 59.160.142.17.in-addr.arpa. 2189                 sherlock.info.   PTR a domain name pointer
-    ## 30   12 59.160.142.17.in-addr.arpa. 2189                 skyvines.info.   PTR a domain name pointer
-    ## 31   12 59.160.142.17.in-addr.arpa. 2189                appleexpo.info.   PTR a domain name pointer
-    ## 32   12 59.160.142.17.in-addr.arpa. 2189                 camelphat.com.   PTR a domain name pointer
-    ## 33   12 59.160.142.17.in-addr.arpa. 2189                powerbook.info.   PTR a domain name pointer
-    ## 34   12 59.160.142.17.in-addr.arpa. 2189                 apples-msk.ru.   PTR a domain name pointer
-    ## 35   12 59.160.142.17.in-addr.arpa. 2189               appleshare.info.   PTR a domain name pointer
-    ## 36   12 59.160.142.17.in-addr.arpa. 2189                ripmixburn.com.   PTR a domain name pointer
-    ## 37   12 59.160.142.17.in-addr.arpa. 2189               webobjects.info.   PTR a domain name pointer
-    ## 38   12 59.160.142.17.in-addr.arpa. 2189              applecentre.info.   PTR a domain name pointer
-    ## 39   12 59.160.142.17.in-addr.arpa. 2189              applescript.info.   PTR a domain name pointer
-    ## 40   12 59.160.142.17.in-addr.arpa. 2189              quicktimetv.info.   PTR a domain name pointer
-    ## 41   12 59.160.142.17.in-addr.arpa. 2189              alchemysynth.com.   PTR a domain name pointer
-    ## 42   12 59.160.142.17.in-addr.arpa. 2189             applemasters.info.   PTR a domain name pointer
-    ## 43   12 59.160.142.17.in-addr.arpa. 2189        pv-apple-com.apple.com.   PTR a domain name pointer
-    ## 44   12 59.160.142.17.in-addr.arpa. 2189            quicktimelive.info.   PTR a domain name pointer
-    ## 45   12 59.160.142.17.in-addr.arpa. 2189            shopdifferent.info.   PTR a domain name pointer
-    ## 46   12 59.160.142.17.in-addr.arpa. 2189           searchads-apple.com.   PTR a domain name pointer
-    ## 47   12 59.160.142.17.in-addr.arpa. 2189         applecomputerinc.info.   PTR a domain name pointer
-    ## 48   12 59.160.142.17.in-addr.arpa. 2189         applepaysupplies.info.   PTR a domain name pointer
-    ## 49   12 59.160.142.17.in-addr.arpa. 2189          camelspaceeffect.com.   PTR a domain name pointer
-    ## 50   12 59.160.142.17.in-addr.arpa. 2189 applepaymerchantsupplies.info.   PTR a domain name pointer
+    ## 1    12 59.160.142.17.in-addr.arpa. 3600                       mac.one.   PTR a domain name pointer
+    ## 2    12 59.160.142.17.in-addr.arpa. 3600                      imac.one.   PTR a domain name pointer
+    ## 3    12 59.160.142.17.in-addr.arpa. 3600                     ipad.host.   PTR a domain name pointer
+    ## 4    12 59.160.142.17.in-addr.arpa. 3600                     ubnw.info.   PTR a domain name pointer
+    ## 5    12 59.160.142.17.in-addr.arpa. 3600                      apple.by.   PTR a domain name pointer
+    ## 6    12 59.160.142.17.in-addr.arpa. 3600                     apple.com.   PTR a domain name pointer
+    ## 7    12 59.160.142.17.in-addr.arpa. 3600                     apple.xyz.   PTR a domain name pointer
+    ## 8    12 59.160.142.17.in-addr.arpa. 3600                     chomp.com.   PTR a domain name pointer
+    ## 9    12 59.160.142.17.in-addr.arpa. 3600                      swell.am.   PTR a domain name pointer
+    ## 10   12 59.160.142.17.in-addr.arpa. 3600                     icloud.ch.   PTR a domain name pointer
+    ## 11   12 59.160.142.17.in-addr.arpa. 3600                     icloud.es.   PTR a domain name pointer
+    ## 12   12 59.160.142.17.in-addr.arpa. 3600                     icloud.fr.   PTR a domain name pointer
+    ## 13   12 59.160.142.17.in-addr.arpa. 3600                     icloud.om.   PTR a domain name pointer
+    ## 14   12 59.160.142.17.in-addr.arpa. 3600                     icloud.se.   PTR a domain name pointer
+    ## 15   12 59.160.142.17.in-addr.arpa. 3600                   iphone.host.   PTR a domain name pointer
+    ## 16   12 59.160.142.17.in-addr.arpa. 3600                  itunes.earth.   PTR a domain name pointer
+    ## 17   12 59.160.142.17.in-addr.arpa. 3600                   macosx.info.   PTR a domain name pointer
+    ## 18   12 59.160.142.17.in-addr.arpa. 3600                    openni.org.   PTR a domain name pointer
+    ## 19   12 59.160.142.17.in-addr.arpa. 3600                   yessql.info.   PTR a domain name pointer
+    ## 20   12 59.160.142.17.in-addr.arpa. 3600              airport.brussels.   PTR a domain name pointer
+    ## 21   12 59.160.142.17.in-addr.arpa. 3600                   appleid.org.   PTR a domain name pointer
+    ## 22   12 59.160.142.17.in-addr.arpa. 3600                   icloude.com.   PTR a domain name pointer
+    ## 23   12 59.160.142.17.in-addr.arpa. 3600                   icloudo.com.   PTR a domain name pointer
+    ## 24   12 59.160.142.17.in-addr.arpa. 3600                  ipadpro.buzz.   PTR a domain name pointer
+    ## 25   12 59.160.142.17.in-addr.arpa. 3600                 airtunes.info.   PTR a domain name pointer
+    ## 26   12 59.160.142.17.in-addr.arpa. 3600                 applepay.info.   PTR a domain name pointer
+    ## 27   12 59.160.142.17.in-addr.arpa. 3600                  appleweb.net.   PTR a domain name pointer
+    ## 28   12 59.160.142.17.in-addr.arpa. 3600                 powermac.info.   PTR a domain name pointer
+    ## 29   12 59.160.142.17.in-addr.arpa. 3600                 sherlock.info.   PTR a domain name pointer
+    ## 30   12 59.160.142.17.in-addr.arpa. 3600                 skyvines.info.   PTR a domain name pointer
+    ## 31   12 59.160.142.17.in-addr.arpa. 3600                appleexpo.info.   PTR a domain name pointer
+    ## 32   12 59.160.142.17.in-addr.arpa. 3600                 camelphat.com.   PTR a domain name pointer
+    ## 33   12 59.160.142.17.in-addr.arpa. 3600                powerbook.info.   PTR a domain name pointer
+    ## 34   12 59.160.142.17.in-addr.arpa. 3600                 apples-msk.ru.   PTR a domain name pointer
+    ## 35   12 59.160.142.17.in-addr.arpa. 3600               appleshare.info.   PTR a domain name pointer
+    ## 36   12 59.160.142.17.in-addr.arpa. 3600                ripmixburn.com.   PTR a domain name pointer
+    ## 37   12 59.160.142.17.in-addr.arpa. 3600               webobjects.info.   PTR a domain name pointer
+    ## 38   12 59.160.142.17.in-addr.arpa. 3600              applecentre.info.   PTR a domain name pointer
+    ## 39   12 59.160.142.17.in-addr.arpa. 3600              applescript.info.   PTR a domain name pointer
+    ## 40   12 59.160.142.17.in-addr.arpa. 3600              quicktimetv.info.   PTR a domain name pointer
+    ## 41   12 59.160.142.17.in-addr.arpa. 3600              alchemysynth.com.   PTR a domain name pointer
+    ## 42   12 59.160.142.17.in-addr.arpa. 3600             applemasters.info.   PTR a domain name pointer
+    ## 43   12 59.160.142.17.in-addr.arpa. 3600        pv-apple-com.apple.com.   PTR a domain name pointer
+    ## 44   12 59.160.142.17.in-addr.arpa. 3600            quicktimelive.info.   PTR a domain name pointer
+    ## 45   12 59.160.142.17.in-addr.arpa. 3600            shopdifferent.info.   PTR a domain name pointer
+    ## 46   12 59.160.142.17.in-addr.arpa. 3600           searchads-apple.com.   PTR a domain name pointer
+    ## 47   12 59.160.142.17.in-addr.arpa. 3600         applecomputerinc.info.   PTR a domain name pointer
+    ## 48   12 59.160.142.17.in-addr.arpa. 3600         applepaysupplies.info.   PTR a domain name pointer
+    ## 49   12 59.160.142.17.in-addr.arpa. 3600          camelspaceeffect.com.   PTR a domain name pointer
+    ## 50   12 59.160.142.17.in-addr.arpa. 3600 applepaymerchantsupplies.info.   PTR a domain name pointer
     ## 
     ## Status: No Error | Recursive Desired | Recursive Available
 

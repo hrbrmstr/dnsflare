@@ -23,7 +23,7 @@
 #' query("example.com", "A")
 #' query("example.com", "1")
 #' query("microsoft.com", "MX")
-#' # query("google-public-dns-a.google.com", "TXT") # CURRENTLY BROKEN ON CLOUDFLARE'S END
+#' query("google-public-dns-a.google.com", "TXT")
 #' query("apple.com")
 #' query("17.142.160.59", "PTR")
 query <- function(name, type = "A") {
